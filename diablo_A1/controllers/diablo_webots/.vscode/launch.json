@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "cppdbg",
+        "request": "launch",
+        "name": "Webots",
+        "program": "${workspaceFolder}/diablo_webots",
+        "stopAtEntry": false,
+        "cwd": "${workspaceFolder}",
+        "args": [ ],
+        "environment": [],
+        "externalConsole": false
+      }
+    ]
+  }

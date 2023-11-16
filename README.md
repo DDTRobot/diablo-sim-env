@@ -1,0 +1,151 @@
+<p align="center"><strong>DIABIO-SIM-ENV</strong></p>
+<p align="center"><a href="https://github.com/Direcrt-Drive-Technology/diablo-sdk-v1/blob/master/LICENSE"><img alt="License" src="https://img.shields.io/badge/License-LGPL%202.1-orange"/></a>
+<img alt="language" src="https://img.shields.io/badge/language-c++-red"/>
+<img alt="platform" src="https://img.shields.io/badge/platform-Docker-2496ED?style=flat-square&logo=docker&logoColor=FFFFFF"/>
+</p>
+
+
+<p align="center">
+    语言：<a href="README.en.md"><strong>English</strong></a> / <strong>中文</strong>
+</p>
+
+
+	基于Webots的机器人仿真环境。您可以通过仿真环境进行运动控制算法的仿真。
+
+---
+# Platform Support 支持平台
+
+* Linux 
+
+
+## Dependencies 环境依赖
+
+- [Docker](https://docs.docker.com/engine/install/ubuntu/)
+
+## Quick Start 快速开始
+
+1. 安装docker
+
+```bash
+./scripts/docker_install.sh
+```
+2. 导入docker镜像
+
+  2.1从云端导入docker镜像（推荐）
+ ```bash
+docker pull heisonberg/diablo-sim-env:latest
+ ```
+
+​       2.2从本地导入docker镜像
+```bash
+#docker load -i <镜像文件>
+docker load -i sim-env.tar
+```
+
+​       2.3自行创建docker镜像
+```bash
+# 使用名称“client-custom”和标签“latest”构建 
+docker build . --file Dockerfile --tag diablo-sim-env/webots:latest
+```
+
+3. 使用docker容器
+```bash
+#将创建容器
+./scripts/create_container_gpu.sh
+```
+```bash
+#进入容器
+./scripts/enter_container.sh
+```
+```bash
+#终止容器
+./scripts/halt.sh
+```
+
+
+
+# Docker使用建议
+
+### 推荐使用 Visual Studio Code + Dev Container插件进行调试 
+
+安装用于远程开发 docker 容器的扩展 (ms-vscode-remote.remote-containers)： 
+
+![demo-vscode-extension](assets/container-vscode-extension.png)
+
+点击左下角的远程开发按钮，然后选择“Attach to Running Container”：
+
+![demo-vscode-dev-container](assets/container-extension-select.png)
+
+然后选择正在运行的Webots容器 `diablo-sim `，然后打开文件夹 `/opt/webots-sim-projects/sim-webots/diablo_A1`。  现在您应该能够直接对 docker 内的文件进行更改。 
+
+请注意，以这种方式所做的任何更改 **都不会** 保留。   一旦容器被停止并删除，更改就会丢失。 建议仅使用 shell 进行调试并使用 `docker build`以进行持久更改。另外也可以使用 `docker commit `保存当前正在运行的容器。
+
+### 构建新的镜像 
+
+`Dockerfile`包含在此存储库中。  要构建更新的客户端映像，请执行
+
+```shell
+# 使用名称“client-custom”和标签“latest”构建 
+docker build . --file Dockerfile --tag diablo-sim-env/webots:latest
+```
+
+默认情况下，仿真代码位于 `diablo_A1/` ( `diablo_A1/`在此仓库中）。  构建镜像时， `diablo_A1/`下面的所有代码将被复制到新镜像 `/opt/diablo-sim-projects`中。  
+
+
+如果较新的镜像需要额外的 apt 和 pip 要求，请自行修改 `Dockerfile`在编译时获取所需的包。 
+
+
+
+### 将文件从本地环境（宿主机）复制到docker容器内 
+
+```shell
+## docker cp <本地路径/文件> <容器名称:容器内的路径>
+docker cp /home/<user>/test.tar diablo-sim:/opt
+```
+
+
+
+# webots使用教程
+
+## 1.初始化配置
+
+<img src="assets/webots-0.png" alt="webots-0" style="zoom: 50%;" />
+
+<img src="assets/webots-1.png" alt="webots-1" style="zoom: 67%;" />
+
+## 2.开始新手教程体验（熟悉webots的使用者可直接跳到第3步）
+
+<img src="assets/webots-2.png" alt="webots-2" style="zoom:67%;" />
+
+<img src="assets/webots-3.png" alt="webots-3" style="zoom:67%;" />
+
+## 3.打开仿真工程
+```shell
+#在容器内的终端执行以下命令启动webots
+webots
+```
+
+### 3.1 Step1:GUI操作加载webots模型
+
+<img src="assets/webots-4.jpg" alt="webots-4" style="zoom:60%;" />
+
+<img src="assets/webots-5-gui-open-wbt-file.jpg" alt="webots-5-gui-open-wbt-file" style="zoom:50%;" />
+
+
+
+​									出现以下界面就表明成功打开了diablo-A1的webots模型
+
+<img src="assets/webots-6.png" alt="webots-6" style="zoom: 33%;" />
+
+### 3.2 Step2:开启仿真
+```shell
+cd /opt/webots-sim-projects/sim-webots/diablo_A1/controllers/diablo_webots/ && ./diablo_webots
+```
+<img src="assets/webots7-manul-control.jpg" alt="webots7-manul-control" style="zoom: 50%;" />
+
+
+## 其他方法：不使用Docker，直接在Ubuntu中安装Webots（不推荐）
+```shell
+# 执行以下脚本将自动在实机中安装Webots,gdbgui和编译clone下来的diablo-A1工程
+./scripts/webots_install.sh
+```

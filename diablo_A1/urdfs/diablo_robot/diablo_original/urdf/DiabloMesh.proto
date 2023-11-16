@@ -1,0 +1,676 @@
+#VRML_SIM R2022b utf8
+# license: Apache License 2.0
+# license url: http://www.apache.org/licenses/LICENSE-2.0
+# This is a proto file for Webots for the DiabloMesh
+# Extracted from: E:\RobotModel\DiabloSTLSDF-main\diablo_mesh\urdf\diablo_mesh.urdf
+
+PROTO DiabloMesh [
+  field  SFVec3f     translation     0 0 0
+  field  SFRotation  rotation        0 0 1 0
+  field  SFString    name            "DiabloMesh"  # Is `Robot.name`.
+  field  SFString    controller      "void"        # Is `Robot.controller`.
+  field  MFString    controllerArgs  []            # Is `Robot.controllerArgs`.
+  field  SFString    customData      ""            # Is `Robot.customData`.
+  field  SFBool      supervisor      FALSE         # Is `Robot.supervisor`.
+  field  SFBool      synchronization TRUE          # Is `Robot.synchronization`.
+  field  SFBool      selfCollision   FALSE         # Is `Robot.selfCollision`.
+]
+{
+  Robot {
+    translation IS translation
+    rotation IS rotation
+    controller IS controller
+    controllerArgs IS controllerArgs
+    customData IS customData
+    supervisor IS supervisor
+    synchronization IS synchronization
+    selfCollision IS selfCollision
+    children [
+      Altimeter {
+        translation 0 0 0
+        rotation 0 0 1 0 #定义altimeter相对机器人位置及姿态
+        name "altimeter" #定义altimeter名字
+    }
+      Accelerometer {
+        translation 0 0 0
+        rotation 0 0 1 0 #定义altimeter相对机器人位置及姿态
+        name "accelerometer" #定义accelerometer名字
+    }
+      InertialUnit {
+        translation 0 0 0
+        rotation 0 0 1 0 #定义inetial unit相对机器人位置及姿态
+        name "inetial unit" #定义inetial unit名字
+    }
+      Shape {
+        appearance DEF base_link_material PBRAppearance {
+          baseColor 0.792160 0.819610 0.933330
+          roughness 1.000000
+          metalness 0
+        }
+        geometry DEF base_link Mesh {
+          url "../diablo_mesh/meshes/base_link.STL"
+        }
+      }
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          axis -0.000008 -1.000000 0.000004
+          anchor 0.000000 0.187550 0.000000
+        }
+        device [
+          RotationalMotor {
+            name "left_j4"
+            maxTorque 10000
+          }
+          PositionSensor {
+            name "left_j4_sensor"
+          }
+        ]
+        endPoint Solid {
+          translation 0.000000 0.187550 0.000000
+          rotation 0.047508 -0.706310 -0.706307 3.236548
+          children [
+            Shape {
+              appearance DEF left_motor_material PBRAppearance {
+                baseColor 0.627450 0.627450 0.627450
+                roughness 1.000000
+                metalness 0
+              }
+              geometry DEF left_motor Mesh {
+                url "../diablo_mesh/meshes/left_motor.STL"
+              }
+            }
+            HingeJoint {
+              jointParameters HingeJointParameters {
+                axis 0.000000 0.000000 -1.000000
+              }
+              device [
+                RotationalMotor {
+                  name "left_j1"
+                  maxTorque 10000
+                }
+                PositionSensor {
+                  name "left_j1_sensor"
+                }
+              ]
+              endPoint Solid {
+                rotation 0.000000 0.000000 -1.000000 2.872900
+                children [
+                  Shape {
+                    appearance DEF left_leg1_material PBRAppearance {
+                      baseColor 0.627450 0.627450 0.627450
+                      roughness 1.000000
+                      metalness 0
+                    }
+                    geometry DEF left_leg1 Mesh {
+                      url "../diablo_mesh/meshes/left_leg1.STL"
+                    }
+                  }
+                  HingeJoint {
+                    jointParameters HingeJointParameters {
+                      axis 0.000000 0.000000 1.000000
+                      anchor 0.140000 0.000000 0.000000
+                    }
+                    device [
+                      # RotationalMotor {
+                      #   name "left_j2"
+                      #   maxTorque 10000
+                      # }
+                      # PositionSensor {
+                      #   name "left_j2_sensor"
+                      # }
+                    ]
+                    endPoint Solid {
+                      translation 0.140000 0.000000 0.000000
+                      rotation 0.000000 0.000000 1.000000 2.872900
+                      children [
+                        Shape {
+                          appearance DEF left_leg2_material PBRAppearance {
+                            baseColor 0.627450 0.627450 0.627450
+                            roughness 1.000000
+                            metalness 0
+                          }
+                          geometry DEF left_leg2 Mesh {
+                            url "../diablo_mesh/meshes/left_leg2.STL"
+                          }
+                        }
+                        HingeJoint {
+                          jointParameters HingeJointParameters {
+                            axis 0.000000 0.000000 -1.000000
+                            anchor 0.140000 0.000000 0.053700
+                          }
+                          device [
+                            RotationalMotor {
+                              name "left_j3"
+                              maxTorque 10000
+                            }
+                            PositionSensor {
+                              name "left_j3_sensor"
+                            }
+                          ]
+                          endPoint Solid {
+                            translation 0.140000 0.000000 0.053700
+                            rotation 0.000000 0.000000 1.000000 0.134330
+                            children [
+                              Shape {
+                                appearance DEF left_wheel_material PBRAppearance {
+                                  baseColor 0.698040 0.698040 0.698040
+                                  roughness 1.000000
+                                  metalness 0
+                                  baseColorMap ImageTexture {
+                                    url "../diablo_mesh/textures/0a6c950e073a74d2e5cfa0c785a44257.jpg"
+                                  }
+                                }
+                                geometry DEF left_wheel Mesh {
+                                  url "../diablo_mesh/meshes/left_wheel.STL"
+                                }
+                              }
+                            ]
+                            name "left_wheel"
+                            boundingObject Cylinder{
+                              height 0.052
+                              radius 0.0935
+                              subdivision 32 # in range [16,1000] 
+                            }
+                            physics Physics {
+                              density -1
+                              mass 2.949400
+                              centerOfMass [ 0.000000 -0.000000 0.000000 ]
+                              inertiaMatrix [
+                                6.933800e-03 6.934000e-03 1.256700e-02
+                                2.869300e-09 4.677900e-09 -5.044100e-11
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                      name "left_leg2"
+                      # boundingObject USE left_leg2
+                      physics Physics {
+                        density -1
+                        mass 0.182180
+                        centerOfMass [ 0.092381 0.000001 0.012349 ]
+                        inertiaMatrix [
+                          4.137200e-05 4.821900e-04 5.044100e-04
+                          5.144500e-09 -7.365900e-06 2.552100e-11
+                        ]
+                      }
+                    }
+                  }
+                ]
+                name "left_leg1"
+                # boundingObject USE left_leg1
+                physics Physics {
+                  density -1
+                  mass 0.103820
+                  centerOfMass [ 0.056675 -0.014633 -0.008000 ]
+                  inertiaMatrix [
+                    3.697200e-05 2.927800e-04 3.253200e-04
+                    2.410600e-05 4.369900e-10 -4.124300e-11
+                  ]
+                }
+              }
+            }
+            HingeJoint {
+              jointParameters HingeJointParameters {
+                axis 0.000000 -0.000000 1.000000
+                anchor 0.090000 0.000000 0.000000
+              }
+              device [
+                # RotationalMotor {
+                #   name "left_j5"
+                #   maxTorque 10000
+                # }
+                # PositionSensor {
+                #   name "left_j5_sensor"
+                # }
+              ]
+              endPoint Solid {
+                translation 0.090000 0.000000 0.000000
+                rotation 0.000000 0.000000 -1.000000 2.872900
+                children [
+                  Shape {
+                    appearance DEF left_leg3_material PBRAppearance {
+                      baseColor 0.627450 0.627450 0.627450
+                      roughness 1.000000
+                      metalness 0
+                    }
+                    geometry DEF left_leg3 Mesh {
+                      url "../diablo_mesh/meshes/left_leg3.STL"
+                    }
+                  }
+                  HingeJoint {
+                    jointParameters HingeJointParameters {
+                      axis 0.000000 0.000000 1.000000
+                      anchor 0.140000 0.000000 0.00000
+                      }
+                      endPoint SolidReference {
+                        solidName "left_leg2"
+                        }        
+                      }
+                ]
+                name "left_leg3"
+                # boundingObject USE left_leg3
+                physics Physics {
+                  density -1
+                  mass 0.071103
+                  centerOfMass [ 0.072113 0.016825 -0.008000 ]
+                  inertiaMatrix [
+                    1.665700e-05 1.796600e-04 1.932800e-04
+                    -5.524600e-06 3.959800e-14 -6.549300e-15
+                  ]
+                }
+              }
+            }
+          ]
+          name "left_motor"
+          # boundingObject USE left_motor
+          physics Physics {
+            density -1
+            mass 1.383700
+            centerOfMass [ 0.001204 -0.000000 -0.066749 ]
+            inertiaMatrix [
+              3.352000e-03 3.490800e-03 3.485600e-03
+              2.778500e-09 -6.591300e-05 4.504500e-10
+            ]
+          }
+        }
+      }
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          axis 0.000007 -1.000000 0.000004
+          anchor 0.000000 -0.187550 0.000000
+        }
+        device [
+          RotationalMotor {
+            name "right_j4"
+            maxTorque 10000
+          }
+          PositionSensor {
+            name "right_j4_sensor"
+          }
+        ]
+        endPoint Solid {
+          translation 0.000000 -0.187550 0.000000
+          rotation -0.047513 0.706309 0.706307 3.046648
+          children [
+            Shape {
+              appearance DEF right_motor_material PBRAppearance {
+                baseColor 0.627450 0.627450 0.627450
+                roughness 1.000000
+                metalness 0
+              }
+              geometry DEF right_motor Mesh {
+                url "../diablo_mesh/meshes/right_motor.STL"
+              }
+            }
+            HingeJoint {
+              jointParameters HingeJointParameters {
+                axis 0.000000 0.000000 -1.000000
+              }
+              device [
+                RotationalMotor {
+                  name "right_j1"
+                  maxTorque 10000
+                }
+                PositionSensor {
+                  name "right_j1_sensor"
+                }
+              ]
+              endPoint Solid {
+                rotation 0.000000 0.000000 -1.000000 2.872900
+                children [
+                  Shape {
+                    appearance DEF right_leg1_material PBRAppearance {
+                      baseColor 0.627450 0.627450 0.627450
+                      roughness 1.000000
+                      metalness 0
+                    }
+                    geometry DEF right_leg1 Mesh {
+                      url "../diablo_mesh/meshes/right_leg1.STL"
+                    }
+                  }
+                  HingeJoint {
+                    jointParameters HingeJointParameters {
+                      axis 0.000000 0.000000 1.000000
+                      anchor 0.140000 0.000000 0.000000
+                    }
+                    device [
+                      # RotationalMotor {
+                      #   name "right_j2"
+                      #   maxTorque 10000
+                      # }
+                      # PositionSensor {
+                      #   name "right_j2_sensor"
+                      # }
+                    ]
+                    endPoint Solid {
+                      translation 0.140000 0.000000 0.000000
+                      rotation 0.000000 0.000000 1.000000 2.872900
+                      children [
+                        Shape {
+                          appearance DEF right_leg2_material PBRAppearance {
+                            baseColor 0.627450 0.627450 0.627450
+                            roughness 1.000000
+                            metalness 0
+                          }
+                          geometry DEF right_leg2 Mesh {
+                            url "../diablo_mesh/meshes/right_leg2.STL"
+                          }
+                        }
+                        HingeJoint {
+                          jointParameters HingeJointParameters {
+                            axis 0.000000 0.000000 -1.000000
+                            anchor 0.140000 0.000000 -0.053700
+                          }
+                          device [
+                            RotationalMotor {
+                              name "right_j3"
+                              maxTorque 10000
+                            }
+                            PositionSensor {
+                              name "right_j3_sensor"
+                            }
+                          ]
+                          endPoint Solid {
+                            translation 0.140000 0.000000 -0.053700
+                            rotation 0.000000 0.000000 -1.000000 3.007300
+                            children [
+                              Shape {
+                                appearance DEF right_wheel_material PBRAppearance {
+                                  baseColor 0.698040 0.698040 0.698040
+                                  roughness 1.000000
+                                  metalness 0
+                                  baseColorMap ImageTexture {
+                                    url "../diablo_mesh/textures/0a6c950e073a74d2e5cfa0c785a44257.jpg"
+                                  }
+                                }
+                                geometry DEF right_wheel Mesh {
+                                  url "../diablo_mesh/meshes/right_wheel.STL"
+                                }
+                              }
+                            ]
+                            name "right_wheel"
+                            boundingObject Cylinder{
+                              height 0.052
+                              radius 0.0935
+                              subdivision 32 # in range [16,1000] 
+                            }
+                            physics Physics {
+                              density -1
+                              mass 2.949400
+                              centerOfMass [ -0.000000 -0.000000 0.000000 ]
+                              inertiaMatrix [
+                                6.933900e-03 6.933900e-03 1.256700e-02
+                                -1.314600e-07 -3.039200e-09 -3.575600e-09
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                      name "right_leg2"
+                      # boundingObject USE right_leg2
+                      physics Physics {
+                        density -1
+                        mass 0.182180
+                        centerOfMass [ 0.092381 0.000001 -0.012349 ]
+                        inertiaMatrix [
+                          4.137200e-05 4.821900e-04 5.044100e-04
+                          5.177700e-09 7.365900e-06 4.522500e-11
+                        ]
+                      }
+                    }
+                  }
+                ]
+                name "right_leg1"
+                # boundingObject USE right_leg1
+                physics Physics {
+                  density -1
+                  mass 0.103820
+                  centerOfMass [ 0.056675 -0.014633 0.008000 ]
+                  inertiaMatrix [
+                    3.697200e-05 2.927800e-04 3.253200e-04
+                    2.410600e-05 -4.368600e-10 4.145900e-11
+                  ]
+                }
+              }
+            }
+            HingeJoint {
+              jointParameters HingeJointParameters {
+                axis 0.000000 -0.000000 1.000000
+                anchor 0.090000 0.000000 0.000000
+              }
+              device [
+                # RotationalMotor {
+                #   name "right_j5"
+                #   maxTorque 10000
+                # }
+                # PositionSensor {
+                #   name "right_j5_sensor"
+                # }
+              ]
+              endPoint Solid {
+                translation 0.090000 0.000000 0.000000
+                rotation 0.000000 0.000000 -1.000000 2.872900
+                children [
+                  Shape {
+                    appearance DEF right_leg3_material PBRAppearance {
+                      baseColor 0.627450 0.627450 0.627450
+                      roughness 1.000000
+                      metalness 0
+                    }
+                    geometry DEF right_leg3 Mesh {
+                      url "../diablo_mesh/meshes/right_leg3.STL"
+                    }
+                  }
+                  HingeJoint {
+                    jointParameters HingeJointParameters {
+                      axis 0.000000 0.000000 1.000000
+                      anchor 0.140000 0.000000 0.00000
+                      }
+                      endPoint SolidReference {
+                        solidName "left_leg2"
+                        }
+                      }
+                ]
+                name "right_leg3"
+                # boundingObject USE right_leg3
+                physics Physics {
+                  density -1
+                  mass 0.071103
+                  centerOfMass [ 0.072113 0.016825 0.008000 ]
+                  inertiaMatrix [
+                    1.665700e-05 1.796600e-04 1.932800e-04
+                    -5.524600e-06 1.485200e-14 -6.519400e-14
+                  ]
+                }
+              }
+            }
+          ]
+          name "right_motor"
+          # boundingObject USE right_motor
+          physics Physics {
+            density -1
+            mass 1.383800
+            centerOfMass [ 0.001204 0.000000 0.066749 ]
+            inertiaMatrix [
+              3.352000e-03 3.490800e-03 3.485600e-03
+              -2.652700e-09 6.591400e-05 -7.296800e-10
+            ]
+          }
+        }
+      }
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          axis 0.000000 1.000000 0.000000
+          anchor 0.156200 0.087750 -0.101000
+        }
+        device [
+          RotationalMotor {
+            name "little_wheel_left_j1"
+            maxTorque 10000
+          }
+          PositionSensor {
+            name "little_wheel_left_j1_sensor"
+          }
+        ]
+        endPoint Solid {
+          translation 0.156200 0.087750 -0.101000
+          children [
+            Shape {
+              appearance DEF little_wheel_left1_material PBRAppearance {
+                roughness 1.000000
+                metalness 0
+              }
+              geometry DEF little_wheel_left1 Mesh {
+                url "../diablo_mesh/meshes/little_wheel_left1.STL"
+              }
+            }
+          ]
+          name "little_wheel_left1"
+          boundingObject USE little_wheel_left1
+          physics Physics {
+            density -1
+            mass 0.065911
+            centerOfMass [ 0.000000 0.012000 -0.000000 ]
+            inertiaMatrix [
+              1.747900e-05 2.890700e-05 1.747900e-05
+              5.906900e-16 1.651100e-28 3.193500e-18
+            ]
+          }
+        }
+      }
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          axis 0.000000 1.000000 0.000000
+          anchor -0.113500 0.087750 -0.101000
+        }
+        device [
+          RotationalMotor {
+            name "little_wheel_left_j2"
+            maxTorque 10000
+          }
+          PositionSensor {
+            name "little_wheel_left_j2_sensor"
+          }
+        ]
+        endPoint Solid {
+          translation -0.113500 0.087750 -0.101000
+          rotation 0.000000 1.000000 0.000000 0.444800
+          children [
+            Shape {
+              appearance DEF little_wheel_left2_material PBRAppearance {
+                roughness 1.000000
+                metalness 0
+              }
+              geometry DEF little_wheel_left2 Mesh {
+                url "../diablo_mesh/meshes/little_wheel_left2.STL"
+              }
+            }
+          ]
+          name "little_wheel_left2"
+          boundingObject USE little_wheel_left2
+          physics Physics {
+            density -1
+            mass 0.065911
+            centerOfMass [ 0.000000 0.012000 0.000000 ]
+            inertiaMatrix [
+              1.747894e-05 2.890671e-05 1.747894e-05
+              5.347643e-16 -4.235165e-22 2.534411e-16
+            ]
+          }
+        }
+      }
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          axis 0.000000 1.000000 0.000000
+          anchor 0.156200 -0.087750 -0.101000
+        }
+        device [
+          RotationalMotor {
+            name "little_wheel_right_j1"
+            maxTorque 10000
+          }
+          PositionSensor {
+            name "little_wheel_right_j1_sensor"
+          }
+        ]
+        endPoint Solid {
+          translation 0.156200 -0.087750 -0.101000
+          children [
+            Shape {
+              appearance DEF little_wheel_right1_material PBRAppearance {
+                roughness 1.000000
+                metalness 0
+              }
+              geometry DEF little_wheel_right1 Mesh {
+                url "../diablo_mesh/meshes/little_wheel_right1.STL"
+              }
+            }
+          ]
+          name "little_wheel_right1"
+          boundingObject USE little_wheel_right1
+          physics Physics {
+            density -1
+            mass 0.065911
+            centerOfMass [ -0.000000 -0.012000 -0.000000 ]
+            inertiaMatrix [
+              1.747900e-05 2.890700e-05 1.747900e-05
+              5.931000e-16 6.641400e-32 1.472100e-21
+            ]
+          }
+        }
+      }
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          axis 0.000000 1.000000 0.000000
+          anchor -0.113500 -0.087750 -0.101000
+        }
+        device [
+          RotationalMotor {
+            name "little_wheel_right_j2"
+            maxTorque 10000
+          }
+          PositionSensor {
+            name "little_wheel_right_j2_sensor"
+          }
+        ]
+        endPoint Solid {
+          translation -0.113500 -0.087750 -0.101000
+          children [
+            Shape {
+              appearance DEF little_wheel_right2_material PBRAppearance {
+                roughness 1.000000
+                metalness 0
+              }
+              geometry DEF little_wheel_right2 Mesh {
+                url "../diablo_mesh/meshes/little_wheel_right2.STL"
+              }
+            }
+          ]
+          name "little_wheel_right2"
+          boundingObject USE little_wheel_right2
+          physics Physics {
+            density -1
+            mass 0.065911
+            centerOfMass [ -0.000000 -0.012000 0.000000 ]
+            inertiaMatrix [
+              1.747900e-05 2.890700e-05 1.747900e-05
+              5.917800e-16 -6.831400e-29 -1.319100e-18
+            ]
+          }
+        }
+      }
+    ]
+    name IS name
+    # boundingObject USE base_link
+    physics Physics {
+      density -1
+      mass 11.639000
+      centerOfMass [ 0.020214 0.000000 0.009267 ]
+      inertiaMatrix [
+        7.162800e-02 1.627400e-01 1.467300e-01
+        -5.987900e-09 -9.747100e-04 -1.636900e-08
+      ]
+    }
+  }
+}

@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="diablo3">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.0202140815667798 1.40860675934196E-08 0.00926648540218816"
+        rpy="0 0 0" />
+      <mass
+        value="11.6387998941492" />
+      <inertia
+        ixx="0.0716281609393131"
+        ixy="-5.98789886673574E-09"
+        ixz="-0.000974707252310601"
+        iyy="0.162741990048559"
+        iyz="-1.63692555881754E-08"
+        izz="0.146728487806429" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://diablo3/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://diablo3/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="left_l1">
+    <inertial>
+      <origin
+        xyz="0.0012043 -9.954E-08 -0.066749"
+        rpy="0 0 0" />
+      <mass
+        value="1.3837" />
+      <inertia
+        ixx="0.003352"
+        ixy="2.7785E-09"
+        ixz="-6.5913E-05"
+        iyy="0.0034908"
+        iyz="4.5045E-10"
+        izz="0.0034856" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://diablo3/meshes/left_l1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.62745 0.62745 0.62745 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://diablo3/meshes/left_l1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_j1"
+    type="continuous">
+    <origin
+      xyz="0 0.18755 0"
+      rpy="1.5708 0.13433 -3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="left_l1" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="left_l2">
+    <inertial>
+      <origin
+        xyz="0.0721130779887419 0.01682459555429 -0.00800000036763027"
+        rpy="0 0 0" />
+      <mass
+        value="0.0711029828808786" />
+      <inertia
+        ixx="1.66567442355692E-05"
+        ixy="-5.52457534744444E-06"
+        ixz="3.95980782991221E-14"
+        iyy="0.000179661319225692"
+        iyz="-6.54927467772431E-15"
+        izz="0.000193284335905776" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://diablo3/meshes/left_l2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.627450980392157 0.627450980392157 0.627450980392157 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://diablo3/meshes/left_l2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_j2"
+    type="continuous">
+    <origin
+      xyz="0.09 0 0"
+      rpy="0 0 -2.8729" />
+    <parent
+      link="left_l1" />
+    <child
+      link="left_l2" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="left_l3">
+    <inertial>
+      <origin
+        xyz="0.00238050756372024 7.21054200153448E-07 0.0123486176023827"
+        rpy="0 0 0" />
+      <mass
+        value="0.182175185739216" />
+      <inertia
+        ixx="4.13718846558144E-05"
+        ixy="5.14447597010158E-09"
+        ixz="-7.36592750171961E-06"
+        iyy="0.00048219187416367"
+        iyz="2.55210567271406E-11"
+        izz="0.000504412388309308" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://diablo3/meshes/left_l3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.627450980392157 0.627450980392157 0.627450980392157 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://diablo3/meshes/left_l3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_j3"
+    type="continuous">
+    <origin
+      xyz="0.14 0 0"
+      rpy="0 0 2.8729" />
+    <parent
+      link="left_l2" />
+    <child
+      link="left_l3" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="left_lwheel">
+    <inertial>
+      <origin
+        xyz="1.73585311680213E-08 -1.51640991430391E-10 5.07914291181244E-09"
+        rpy="0 0 0" />
+      <mass
+        value="2.9494128507137" />
+      <inertia
+        ixx="0.00693376841328276"
+        ixy="2.86933969590788E-09"
+        ixz="4.67792007962852E-09"
+        iyy="0.00693403452549674"
+        iyz="-5.04409850647164E-11"
+        izz="0.0125668642106595" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://diablo3/meshes/left_lwheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.698039215686274 0.698039215686274 0.698039215686274 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://diablo3/meshes/left_lwheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_j4"
+    type="continuous">
+    <origin
+      xyz="0.05 0 0.0537"
+      rpy="0 0 0.13433" />
+    <parent
+      link="left_l3" />
+    <child
+      link="left_lwheel" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="right_l1">
+    <inertial>
+      <origin
+        xyz="0.00120442171894708 1.82033374290791E-07 0.0667492997189435"
+        rpy="0 0 0" />
+      <mass
+        value="1.3837507092777" />
+      <inertia
+        ixx="0.00335200213224034"
+        ixy="-2.65270599057862E-09"
+        ixz="6.59140168852186E-05"
+        iyy="0.00349076720121641"
+        iyz="-7.29676247721929E-10"
+        izz="0.00348558185976986" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://diablo3/meshes/right_l1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.627450980392157 0.627450980392157 0.627450980392157 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://diablo3/meshes/right_l1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_j1"
+    type="continuous">
+    <origin
+      xyz="0 -0.18755 0"
+      rpy="1.5708 0.13433 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="right_l1" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="right_l2">
+    <inertial>
+      <origin
+        xyz="0.072113077959871 0.0168245955229767 0.00800000046295368"
+        rpy="0 0 0" />
+      <mass
+        value="0.0711029828808784" />
+      <inertia
+        ixx="1.66567442356654E-05"
+        ixy="-5.52457534886535E-06"
+        ixz="1.48515365195649E-14"
+        iyy="0.000179661319225595"
+        iyz="-6.51944033382986E-14"
+        izz="0.000193284335905776" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://diablo3/meshes/right_l2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.627450980392157 0.627450980392157 0.627450980392157 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://diablo3/meshes/right_l2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_j2"
+    type="continuous">
+    <origin
+      xyz="0.09 0 0"
+      rpy="0 0 -2.8729" />
+    <parent
+      link="right_l1" />
+    <child
+      link="right_l2" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="right_l3">
+    <inertial>
+      <origin
+        xyz="0.00238050845323953 7.2065863047921E-07 -0.012348620327408"
+        rpy="0 0 0" />
+      <mass
+        value="0.182175193686457" />
+      <inertia
+        ixx="4.13718909207856E-05"
+        ixy="5.17773898654552E-09"
+        ixz="7.36593334622795E-06"
+        iyy="0.000482191874666909"
+        iyz="4.52779003458213E-11"
+        izz="0.000504412395581499" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://diablo3/meshes/right_l3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.627450980392157 0.627450980392157 0.627450980392157 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://diablo3/meshes/right_l3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_j3"
+    type="continuous">
+    <origin
+      xyz="0.14 0 0"
+      rpy="0 0 2.8729" />
+    <parent
+      link="right_l2" />
+    <child
+      link="right_l3" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="right_wheel">
+    <inertial>
+      <origin
+        xyz="-1.1211399975064E-08 -1.34601574747206E-08 5.07931696702713E-09"
+        rpy="0 0 0" />
+      <mass
+        value="2.9494128507137" />
+      <inertia
+        ixx="0.0069339222205159"
+        ixy="-1.31459314919733E-07"
+        ixz="-3.03916676543132E-09"
+        iyy="0.00693388071826362"
+        iyz="-3.57556715428068E-09"
+        izz="0.0125668642106595" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://diablo3/meshes/right_wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.698039215686274 0.698039215686274 0.698039215686274 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://diablo3/meshes/right_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_j4"
+    type="continuous">
+    <origin
+      xyz="0.05 0 -0.0537"
+      rpy="0 0 -3.0073" />
+    <parent
+      link="right_l3" />
+    <child
+      link="right_wheel" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+</robot>
