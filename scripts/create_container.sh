@@ -6,6 +6,5 @@ sudo docker run -id --gpus all --name diablo-sim --network host \
 	-e QT_X11_NO_MITSHM=1 \
 	-v /tmp/.X11-unix:/tmp/.X11-unix \
     -v $HOME/Desktop/shared:/shared \
-	heisonberg/diablo-sim-env:latest
-
+	heisonberg/diablo-sim-env:auto_start
 sudo xhost +
