@@ -15,7 +15,7 @@
 ---
 # Platform Support 支持平台
 
-* Linux 
+* Ubuntu 20.04/22.04 (64-bit PC (AMD64) desktop)
 
 
 ## Dependencies 环境依赖
@@ -29,18 +29,12 @@
 ```bash
 ./scripts/docker_install.sh
 ```
-2. 导入docker镜像（以下有两种方法可选请任选一种）
-
-- 方法一：从云端导入docker镜像（推荐）
+2. 导入docker镜像
+-从云端导入docker镜像（推荐）
  ```bash
 docker pull heisonberg/diablo-sim-env:auto_start
  ```
 
-- 方法二：从本地导入docker镜像
-```bash
-#docker load -i <镜像文件>
-docker load -i sim-env.tar
-```
 
 
 3. 使用docker容器（以下脚本需进入仓库目录下在本地终端中执行）
