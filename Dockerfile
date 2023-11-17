@@ -34,7 +34,7 @@ ENV NVIDIA_VISIBLE_DEVICES all
 RUN mkdir -p /opt/webots-sim-projects/sim-webots/diablo_A1
 ADD diablo_A1 /opt/webots-sim-projects/sim-webots/diablo_A1
 
-RUN apt-get install --yes gnuplot wget make && rm -rf /var/lib/apt/lists/ &&\
+RUN apt-get install --yes gnuplot wget make supervisor && rm -rf /var/lib/apt/lists/ &&\
   cd /opt/webots-sim-projects/sim-webots/diablo_A1/controllers/diablo_webots/ && make debug && \
   wget https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/gnuplot-cpp/gnuplot-cpp.zip && \
   mkdir -p /opt/gnuplot && unzip -d /opt/gnuplot gnuplot-cpp.zip && cd /opt/gnuplot/gnuplot-cpp && make &&\
@@ -43,8 +43,7 @@ RUN apt-get install --yes gnuplot wget make && rm -rf /var/lib/apt/lists/ &&\
 # Setup gdbgui env
 RUN export PATH="$PATH:$HOME/.local/bin"
 
-
-# setup ~/.bashrc
+# Setup ~/.bashrc
 RUN echo 'export TERM=xterm-256color\n\
 export PATH="$PATH:$HOME/.local/bin"\n\
 export WEBOTS_HOME=/usr/local/webots\n'\
@@ -55,6 +54,14 @@ RUN echo '/usr/local/webots/lib/controller\n'\
 >> /etc/ld.so.conf
 RUN ldconfig
 
-# Finally open a bash command to let the user interact
-CMD ["/bin/bash"]
+# Setup supervisord.conf
+RUN echo '[supervisord]\n\
+nodaemon=true\n\
+[program:webots]\n\
+command=webots\n\
+' >> /etc/supervisor/conf.d/supervisord.conf
+
+# Add start script
+ADD start.sh /opt/start.sh
+CMD /opt/start.sh
 
