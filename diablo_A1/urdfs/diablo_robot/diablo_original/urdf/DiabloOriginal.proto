@@ -1,19 +1,24 @@
 #VRML_SIM R2022b utf8
 # license: Apache License 2.0
 # license url: http://www.apache.org/licenses/LICENSE-2.0
-# This is a proto file for Webots for the DiabloMesh
+# This is a proto file for Webots for the DiabloOriginal
 # Extracted from: E:\RobotModel\DiabloSTLSDF-main\diablo_mesh\urdf\diablo_mesh.urdf
 
-PROTO DiabloMesh [
+PROTO DiabloOriginal [
   field  SFVec3f     translation     0 0 0
   field  SFRotation  rotation        0 0 1 0
-  field  SFString    name            "DiabloMesh"  # Is `Robot.name`.
-  field  SFString    controller      "void"        # Is `Robot.controller`.
+  field  SFString    name            "DiabloOriginal"  # Is `Robot.name`.
+  field  SFString    controller      "<extern>"        # Is `Robot.controller`.
   field  MFString    controllerArgs  []            # Is `Robot.controllerArgs`.
   field  SFString    customData      ""            # Is `Robot.customData`.
-  field  SFBool      supervisor      FALSE         # Is `Robot.supervisor`.
+  field  SFBool      supervisor      TRUE         # Is `Robot.supervisor`.
   field  SFBool      synchronization TRUE          # Is `Robot.synchronization`.
   field  SFBool      selfCollision   FALSE         # Is `Robot.selfCollision`.
+  field  SFFloat     dampingConstant  1
+  field  SFFloat     springConstant  1
+
+
+
 ]
 {
   Robot {
@@ -25,22 +30,22 @@ PROTO DiabloMesh [
     supervisor IS supervisor
     synchronization IS synchronization
     selfCollision IS selfCollision
+    
+    
     children [
-      Altimeter {
-        translation 0 0 0
-        rotation 0 0 1 0 #定义altimeter相对机器人位置及姿态
-        name "altimeter" #定义altimeter名字
-    }
-      Accelerometer {
-        translation 0 0 0
-        rotation 0 0 1 0 #定义altimeter相对机器人位置及姿态
-        name "accelerometer" #定义accelerometer名字
-    }
-      InertialUnit {
-        translation 0 0 0
-        rotation 0 0 1 0 #定义inetial unit相对机器人位置及姿态
-        name "inetial unit" #定义inetial unit名字
-    }
+        InertialUnit {
+          translation 0.1 0 0
+          name "imu"
+        }
+        #ADD Accelerometer
+        Accelerometer{
+          translation 0.1 0 0
+          name "accl"        
+        }
+        Gyro{
+          translation 0.1 0 0
+          name "gyro"
+        }
       Shape {
         appearance DEF base_link_material PBRAppearance {
           baseColor 0.792160 0.819610 0.933330
@@ -48,13 +53,15 @@ PROTO DiabloMesh [
           metalness 0
         }
         geometry DEF base_link Mesh {
-          url "../diablo_mesh/meshes/base_link.STL"
+          url "../urdf/diablo_robot/diablo_original/meshes/base_link.STL"
         }
       }
       HingeJoint {
         jointParameters HingeJointParameters {
           axis -0.000008 -1.000000 0.000004
           anchor 0.000000 0.187550 0.000000
+          dampingConstant IS dampingConstant
+          springConstant IS springConstant
         }
         device [
           RotationalMotor {
@@ -76,12 +83,14 @@ PROTO DiabloMesh [
                 metalness 0
               }
               geometry DEF left_motor Mesh {
-                url "../diablo_mesh/meshes/left_motor.STL"
+                url "../urdf/diablo_robot/diablo_original/meshes/left_motor.STL"
               }
             }
             HingeJoint {
               jointParameters HingeJointParameters {
                 axis 0.000000 0.000000 -1.000000
+                dampingConstant IS dampingConstant
+                springConstant IS springConstant
               }
               device [
                 RotationalMotor {
@@ -102,13 +111,14 @@ PROTO DiabloMesh [
                       metalness 0
                     }
                     geometry DEF left_leg1 Mesh {
-                      url "../diablo_mesh/meshes/left_leg1.STL"
+                      url "../urdf/diablo_robot/diablo_original/meshes/left_leg1.STL"
                     }
                   }
                   HingeJoint {
                     jointParameters HingeJointParameters {
                       axis 0.000000 0.000000 1.000000
                       anchor 0.140000 0.000000 0.000000
+                      dampingConstant IS dampingConstant
                     }
                     device [
                       # RotationalMotor {
@@ -130,13 +140,14 @@ PROTO DiabloMesh [
                             metalness 0
                           }
                           geometry DEF left_leg2 Mesh {
-                            url "../diablo_mesh/meshes/left_leg2.STL"
+                            url "../urdf/diablo_robot/diablo_original/meshes/left_leg2.STL"
                           }
                         }
                         HingeJoint {
                           jointParameters HingeJointParameters {
                             axis 0.000000 0.000000 -1.000000
                             anchor 0.140000 0.000000 0.053700
+                            dampingConstant IS dampingConstant                          
                           }
                           device [
                             RotationalMotor {
@@ -156,12 +167,9 @@ PROTO DiabloMesh [
                                   baseColor 0.698040 0.698040 0.698040
                                   roughness 1.000000
                                   metalness 0
-                                  baseColorMap ImageTexture {
-                                    url "../diablo_mesh/textures/0a6c950e073a74d2e5cfa0c785a44257.jpg"
-                                  }
                                 }
                                 geometry DEF left_wheel Mesh {
-                                  url "../diablo_mesh/meshes/left_wheel.STL"
+                                  url "../urdf/diablo_robot/diablo_original/meshes/left_wheel.STL"
                                 }
                               }
                             ]
@@ -169,7 +177,7 @@ PROTO DiabloMesh [
                             boundingObject Cylinder{
                               height 0.052
                               radius 0.0935
-                              subdivision 32 # in range [16,1000] 
+                              subdivision 128 # in range [16,1000] 
                             }
                             physics Physics {
                               density -1
@@ -187,7 +195,7 @@ PROTO DiabloMesh [
                       # boundingObject USE left_leg2
                       physics Physics {
                         density -1
-                        mass 0.182180
+                        mass 0.1
                         centerOfMass [ 0.092381 0.000001 0.012349 ]
                         inertiaMatrix [
                           4.137200e-05 4.821900e-04 5.044100e-04
@@ -199,21 +207,31 @@ PROTO DiabloMesh [
                 ]
                 name "left_leg1"
                 # boundingObject USE left_leg1
-                physics Physics {
-                  density -1
-                  mass 0.103820
-                  centerOfMass [ 0.056675 -0.014633 -0.008000 ]
-                  inertiaMatrix [
-                    3.697200e-05 2.927800e-04 3.253200e-04
-                    2.410600e-05 4.369900e-10 -4.124300e-11
-                  ]
-                }
+                # physics Physics {
+                #   density -1
+                #   mass 0.103820
+                #   centerOfMass [ 0.056675 -0.014633 -0.008000 ]
+                #   inertiaMatrix [
+                #     3.697200e-05 2.927800e-04 3.253200e-04
+                #     2.410600e-05 4.369900e-10 -4.124300e-11
+                #   ]
+                # }
+                        physics Physics {
+            density -1
+            mass 0.1
+            centerOfMass [ 0.001204 -0.000000 -0.066749 ]
+            inertiaMatrix [
+              3.352000e-03 3.490800e-03 3.485600e-03
+              2.778500e-09 -6.591300e-05 4.504500e-10
+            ]
+          }
               }
             }
             HingeJoint {
               jointParameters HingeJointParameters {
                 axis 0.000000 -0.000000 1.000000
                 anchor 0.090000 0.000000 0.000000
+                dampingConstant IS dampingConstant
               }
               device [
                 # RotationalMotor {
@@ -235,13 +253,14 @@ PROTO DiabloMesh [
                       metalness 0
                     }
                     geometry DEF left_leg3 Mesh {
-                      url "../diablo_mesh/meshes/left_leg3.STL"
+                      url "../urdf/diablo_robot/diablo_original/meshes/left_leg3.STL"
                     }
                   }
                   HingeJoint {
                     jointParameters HingeJointParameters {
                       axis 0.000000 0.000000 1.000000
                       anchor 0.140000 0.000000 0.00000
+                      dampingConstant IS dampingConstant
                       }
                       endPoint SolidReference {
                         solidName "left_leg2"
@@ -266,7 +285,8 @@ PROTO DiabloMesh [
           # boundingObject USE left_motor
           physics Physics {
             density -1
-            mass 1.383700
+            #mass 1.383700
+            mass 0.1
             centerOfMass [ 0.001204 -0.000000 -0.066749 ]
             inertiaMatrix [
               3.352000e-03 3.490800e-03 3.485600e-03
@@ -279,6 +299,8 @@ PROTO DiabloMesh [
         jointParameters HingeJointParameters {
           axis 0.000007 -1.000000 0.000004
           anchor 0.000000 -0.187550 0.000000
+          dampingConstant IS dampingConstant
+          springConstant IS springConstant
         }
         device [
           RotationalMotor {
@@ -300,12 +322,14 @@ PROTO DiabloMesh [
                 metalness 0
               }
               geometry DEF right_motor Mesh {
-                url "../diablo_mesh/meshes/right_motor.STL"
+                url "../urdf/diablo_robot/diablo_original/meshes/right_motor.STL"
               }
             }
             HingeJoint {
               jointParameters HingeJointParameters {
                 axis 0.000000 0.000000 -1.000000
+                dampingConstant IS dampingConstant
+                springConstant IS springConstant
               }
               device [
                 RotationalMotor {
@@ -326,13 +350,14 @@ PROTO DiabloMesh [
                       metalness 0
                     }
                     geometry DEF right_leg1 Mesh {
-                      url "../diablo_mesh/meshes/right_leg1.STL"
+                      url "../urdf/diablo_robot/diablo_original/meshes/right_leg1.STL"
                     }
                   }
                   HingeJoint {
                     jointParameters HingeJointParameters {
                       axis 0.000000 0.000000 1.000000
                       anchor 0.140000 0.000000 0.000000
+                      dampingConstant IS dampingConstant
                     }
                     device [
                       # RotationalMotor {
@@ -354,13 +379,14 @@ PROTO DiabloMesh [
                             metalness 0
                           }
                           geometry DEF right_leg2 Mesh {
-                            url "../diablo_mesh/meshes/right_leg2.STL"
+                            url "../urdf/diablo_robot/diablo_original/meshes/right_leg2.STL"
                           }
                         }
                         HingeJoint {
                           jointParameters HingeJointParameters {
                             axis 0.000000 0.000000 -1.000000
                             anchor 0.140000 0.000000 -0.053700
+                            dampingConstant IS dampingConstant
                           }
                           device [
                             RotationalMotor {
@@ -380,12 +406,9 @@ PROTO DiabloMesh [
                                   baseColor 0.698040 0.698040 0.698040
                                   roughness 1.000000
                                   metalness 0
-                                  baseColorMap ImageTexture {
-                                    url "../diablo_mesh/textures/0a6c950e073a74d2e5cfa0c785a44257.jpg"
-                                  }
                                 }
                                 geometry DEF right_wheel Mesh {
-                                  url "../diablo_mesh/meshes/right_wheel.STL"
+                                  url "../urdf/diablo_robot/diablo_original/meshes/right_wheel.STL"
                                 }
                               }
                             ]
@@ -393,7 +416,7 @@ PROTO DiabloMesh [
                             boundingObject Cylinder{
                               height 0.052
                               radius 0.0935
-                              subdivision 32 # in range [16,1000] 
+                              subdivision 128 # in range [16,1000] 
                             }
                             physics Physics {
                               density -1
@@ -411,7 +434,7 @@ PROTO DiabloMesh [
                       # boundingObject USE right_leg2
                       physics Physics {
                         density -1
-                        mass 0.182180
+                        mass 0.1
                         centerOfMass [ 0.092381 0.000001 -0.012349 ]
                         inertiaMatrix [
                           4.137200e-05 4.821900e-04 5.044100e-04
@@ -423,21 +446,31 @@ PROTO DiabloMesh [
                 ]
                 name "right_leg1"
                 # boundingObject USE right_leg1
-                physics Physics {
-                  density -1
-                  mass 0.103820
-                  centerOfMass [ 0.056675 -0.014633 0.008000 ]
-                  inertiaMatrix [
-                    3.697200e-05 2.927800e-04 3.253200e-04
-                    2.410600e-05 -4.368600e-10 4.145900e-11
-                  ]
-                }
+                # physics Physics {
+                #   density -1
+                #   mass 0.103820
+                #   centerOfMass [ 0.056675 -0.014633 0.008000 ]
+                #   inertiaMatrix [
+                #     3.697200e-05 2.927800e-04 3.253200e-04
+                #     2.410600e-05 -4.368600e-10 4.145900e-11
+                #   ]
+                # }
+                        physics Physics {
+            density -1
+            mass 0.1
+            centerOfMass [ 0.001204 0.000000 0.066749 ]
+            inertiaMatrix [
+              3.352000e-03 3.490800e-03 3.485600e-03
+              -2.652700e-09 6.591400e-05 -7.296800e-10
+            ]
+          }
               }
             }
             HingeJoint {
               jointParameters HingeJointParameters {
                 axis 0.000000 -0.000000 1.000000
                 anchor 0.090000 0.000000 0.000000
+                dampingConstant IS dampingConstant
               }
               device [
                 # RotationalMotor {
@@ -459,16 +492,17 @@ PROTO DiabloMesh [
                       metalness 0
                     }
                     geometry DEF right_leg3 Mesh {
-                      url "../diablo_mesh/meshes/right_leg3.STL"
+                      url "../urdf/diablo_robot/diablo_original/meshes/right_leg3.STL"
                     }
                   }
                   HingeJoint {
                     jointParameters HingeJointParameters {
                       axis 0.000000 0.000000 1.000000
                       anchor 0.140000 0.000000 0.00000
+                      dampingConstant IS dampingConstant
                       }
                       endPoint SolidReference {
-                        solidName "left_leg2"
+                        solidName "right_leg2"
                         }
                       }
                 ]
@@ -490,7 +524,8 @@ PROTO DiabloMesh [
           # boundingObject USE right_motor
           physics Physics {
             density -1
-            mass 1.383800
+            #mass 1.383800
+            mass 0.1
             centerOfMass [ 0.001204 0.000000 0.066749 ]
             inertiaMatrix [
               3.352000e-03 3.490800e-03 3.485600e-03
@@ -503,16 +538,17 @@ PROTO DiabloMesh [
         jointParameters HingeJointParameters {
           axis 0.000000 1.000000 0.000000
           anchor 0.156200 0.087750 -0.101000
+          dampingConstant  0.01
         }
-        device [
-          RotationalMotor {
-            name "little_wheel_left_j1"
-            maxTorque 10000
-          }
-          PositionSensor {
-            name "little_wheel_left_j1_sensor"
-          }
-        ]
+        # device [
+        #   RotationalMotor {
+        #     name "little_wheel_left_j1"
+        #     maxTorque 10000
+        #   }
+        #   PositionSensor {
+        #     name "little_wheel_left_j1_sensor"
+        #   }
+        # ]
         endPoint Solid {
           translation 0.156200 0.087750 -0.101000
           children [
@@ -522,12 +558,24 @@ PROTO DiabloMesh [
                 metalness 0
               }
               geometry DEF little_wheel_left1 Mesh {
-                url "../diablo_mesh/meshes/little_wheel_left1.STL"
+                url "../urdf/diablo_robot/diablo_original/meshes/little_wheel_left1.STL"
               }
             }
           ]
           name "little_wheel_left1"
-          boundingObject USE little_wheel_left1
+          boundingObject Transform
+          {
+            rotation 1 0 0 1.5700
+            translation 0 0.012 0
+            children[
+              Cylinder
+              {
+                height 0.024
+                radius 0.030
+                subdivision 32 # in range [16,1000]
+              }
+            ]
+          }
           physics Physics {
             density -1
             mass 0.065911
@@ -543,16 +591,17 @@ PROTO DiabloMesh [
         jointParameters HingeJointParameters {
           axis 0.000000 1.000000 0.000000
           anchor -0.113500 0.087750 -0.101000
+          dampingConstant 0.01
         }
-        device [
-          RotationalMotor {
-            name "little_wheel_left_j2"
-            maxTorque 10000
-          }
-          PositionSensor {
-            name "little_wheel_left_j2_sensor"
-          }
-        ]
+        # device [
+        #   RotationalMotor {
+        #     name "little_wheel_left_j2"
+        #     maxTorque 10000
+        #   }
+        #   PositionSensor {
+        #     name "little_wheel_left_j2_sensor"
+        #   }
+        # ]
         endPoint Solid {
           translation -0.113500 0.087750 -0.101000
           rotation 0.000000 1.000000 0.000000 0.444800
@@ -563,12 +612,24 @@ PROTO DiabloMesh [
                 metalness 0
               }
               geometry DEF little_wheel_left2 Mesh {
-                url "../diablo_mesh/meshes/little_wheel_left2.STL"
+                url "../urdf/diablo_robot/diablo_original/meshes/little_wheel_left2.STL"
               }
             }
           ]
           name "little_wheel_left2"
-          boundingObject USE little_wheel_left2
+          boundingObject Transform
+          {
+            rotation 1 0 0 1.5700
+            translation 0 0.012 0
+            children[
+              Cylinder
+              {
+                height 0.024
+                radius 0.030
+                subdivision 32 # in range [16,1000]
+              }
+            ]
+          }
           physics Physics {
             density -1
             mass 0.065911
@@ -584,16 +645,17 @@ PROTO DiabloMesh [
         jointParameters HingeJointParameters {
           axis 0.000000 1.000000 0.000000
           anchor 0.156200 -0.087750 -0.101000
+          dampingConstant 0.01
         }
-        device [
-          RotationalMotor {
-            name "little_wheel_right_j1"
-            maxTorque 10000
-          }
-          PositionSensor {
-            name "little_wheel_right_j1_sensor"
-          }
-        ]
+        # device [
+        #   RotationalMotor {
+        #     name "little_wheel_right_j1"
+        #     maxTorque 10000
+        #   }
+        #   PositionSensor {
+        #     name "little_wheel_right_j1_sensor"
+        #   }
+        # ]
         endPoint Solid {
           translation 0.156200 -0.087750 -0.101000
           children [
@@ -603,12 +665,24 @@ PROTO DiabloMesh [
                 metalness 0
               }
               geometry DEF little_wheel_right1 Mesh {
-                url "../diablo_mesh/meshes/little_wheel_right1.STL"
+                url "../urdf/diablo_robot/diablo_original/meshes/little_wheel_right1.STL"
               }
             }
           ]
           name "little_wheel_right1"
-          boundingObject USE little_wheel_right1
+          boundingObject Transform
+          {
+            rotation 1 0 0 1.5700
+            translation 0 -0.012 0
+            children[
+              Cylinder
+              {
+                height 0.024
+                radius 0.030
+                subdivision 32 # in range [16,1000]
+              }
+            ]
+          }
           physics Physics {
             density -1
             mass 0.065911
@@ -624,16 +698,17 @@ PROTO DiabloMesh [
         jointParameters HingeJointParameters {
           axis 0.000000 1.000000 0.000000
           anchor -0.113500 -0.087750 -0.101000
+          dampingConstant  0.01
         }
-        device [
-          RotationalMotor {
-            name "little_wheel_right_j2"
-            maxTorque 10000
-          }
-          PositionSensor {
-            name "little_wheel_right_j2_sensor"
-          }
-        ]
+        # device [
+        #   RotationalMotor {
+        #     name "little_wheel_right_j2"
+        #     maxTorque 10000
+        #   }
+        #   PositionSensor {
+        #     name "little_wheel_right_j2_sensor"
+        #   }
+        # ]
         endPoint Solid {
           translation -0.113500 -0.087750 -0.101000
           children [
@@ -643,12 +718,24 @@ PROTO DiabloMesh [
                 metalness 0
               }
               geometry DEF little_wheel_right2 Mesh {
-                url "../diablo_mesh/meshes/little_wheel_right2.STL"
+                url "../urdf/diablo_robot/diablo_original/meshes/little_wheel_right2.STL"
               }
             }
           ]
           name "little_wheel_right2"
-          boundingObject USE little_wheel_right2
+          boundingObject Transform
+          {
+            rotation 1 0 0 1.5700
+            translation 0 -0.012 0
+            children[
+              Cylinder
+              {
+                height 0.024
+                radius 0.030
+                subdivision 32 # in range [16,1000]
+              }
+            ]
+          }
           physics Physics {
             density -1
             mass 0.065911
@@ -666,7 +753,7 @@ PROTO DiabloMesh [
     physics Physics {
       density -1
       mass 11.639000
-      centerOfMass [ 0.020214 0.000000 0.009267 ]
+      centerOfMass [ -0.001 0.000000 0.009267 ]
       inertiaMatrix [
         7.162800e-02 1.627400e-01 1.467300e-01
         -5.987900e-09 -9.747100e-04 -1.636900e-08

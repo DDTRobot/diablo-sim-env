@@ -26,7 +26,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://diablo_mesh/meshes/base_link.STL" />
+          filename="../meshes/base_link.STL" />
       </geometry>
       <material
         name="">
@@ -40,7 +40,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://diablo_mesh/meshes/base_link.STL" />
+          filename="../meshes/base_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -66,7 +66,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://diablo_mesh/meshes/left_motor.STL" />
+          filename="../meshes/left_motor.STL" />
       </geometry>
       <material
         name="">
@@ -80,7 +80,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://diablo_mesh/meshes/left_motor.STL" />
+          filename="../meshes/left_motor.STL" />
       </geometry>
     </collision>
   </link>
@@ -119,7 +119,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://diablo_mesh/meshes/left_leg1.STL" />
+          filename="../meshes/left_leg1.STL" />
       </geometry>
       <material
         name="">
@@ -133,7 +133,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://diablo_mesh/meshes/left_leg1.STL" />
+          filename="../meshes/left_leg1.STL" />
       </geometry>
     </collision>
   </link>
@@ -172,7 +172,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://diablo_mesh/meshes/left_leg2.STL" />
+          filename="../meshes/left_leg2.STL" />
       </geometry>
       <material
         name="">
@@ -186,7 +186,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://diablo_mesh/meshes/left_leg2.STL" />
+          filename="../meshes/left_leg2.STL" />
       </geometry>
     </collision>
   </link>
@@ -225,14 +225,14 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://diablo_mesh/meshes/left_wheel.STL" />
+          filename="../meshes/left_wheel.STL" />
       </geometry>
       <material
         name="">
         <color
           rgba="0.69804 0.69804 0.69804 1" />
         <texture
-          filename="package://diablo_mesh/textures/0a6c950e073a74d2e5cfa0c785a44257.jpg" />
+          filename="../textures/0a6c950e073a74d2e5cfa0c785a44257.jpg" />
       </material>
     </visual>
     <collision>
@@ -241,7 +241,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://diablo_mesh/meshes/left_wheel.STL" />
+          filename="../meshes/left_wheel.STL" />
       </geometry>
     </collision>
   </link>
@@ -280,7 +280,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://diablo_mesh/meshes/left_leg3.STL" />
+          filename="../meshes/left_leg3.STL" />
       </geometry>
       <material
         name="">
@@ -294,7 +294,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://diablo_mesh/meshes/left_leg3.STL" />
+          filename="../meshes/left_leg3.STL" />
       </geometry>
     </collision>
   </link>
@@ -333,7 +333,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://diablo_mesh/meshes/right_motor.STL" />
+          filename="../meshes/right_motor.STL" />
       </geometry>
       <material
         name="">
@@ -347,7 +347,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://diablo_mesh/meshes/right_motor.STL" />
+          filename="../meshes/right_motor.STL" />
       </geometry>
     </collision>
   </link>
@@ -386,7 +386,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://diablo_mesh/meshes/right_leg1.STL" />
+          filename="../meshes/right_leg1.STL" />
       </geometry>
       <material
         name="">
@@ -400,7 +400,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://diablo_mesh/meshes/right_leg1.STL" />
+          filename="../meshes/right_leg1.STL" />
       </geometry>
     </collision>
   </link>
@@ -439,7 +439,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://diablo_mesh/meshes/right_leg2.STL" />
+          filename="../meshes/right_leg2.STL" />
       </geometry>
       <material
         name="">
@@ -453,7 +453,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://diablo_mesh/meshes/right_leg2.STL" />
+          filename="../meshes/right_leg2.STL" />
       </geometry>
     </collision>
   </link>
@@ -492,14 +492,14 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://diablo_mesh/meshes/right_wheel.STL" />
+          filename="../meshes/right_wheel.STL" />
       </geometry>
       <material
         name="">
         <color
           rgba="0.69804 0.69804 0.69804 1" />
         <texture
-          filename="package://diablo_mesh/textures/0a6c950e073a74d2e5cfa0c785a44257.jpg" />
+          filename="../textures/0a6c950e073a74d2e5cfa0c785a44257.jpg" />
       </material>
     </visual>
     <collision>
@@ -508,7 +508,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://diablo_mesh/meshes/right_wheel.STL" />
+          filename="../meshes/right_wheel.STL" />
       </geometry>
     </collision>
   </link>
@@ -547,7 +547,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://diablo_mesh/meshes/right_leg3.STL" />
+          filename="../meshes/right_leg3.STL" />
       </geometry>
       <material
         name="">
@@ -561,7 +561,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://diablo_mesh/meshes/right_leg3.STL" />
+          filename="../meshes/right_leg3.STL" />
       </geometry>
     </collision>
   </link>
@@ -600,7 +600,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://diablo_mesh/meshes/little_wheel_left1.STL" />
+          filename="../meshes/little_wheel_left1.STL" />
       </geometry>
       <material
         name="">
@@ -614,7 +614,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://diablo_mesh/meshes/little_wheel_left1.STL" />
+          filename="../meshes/little_wheel_left1.STL" />
       </geometry>
     </collision>
   </link>
@@ -653,7 +653,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://diablo_mesh/meshes/little_wheel_left2.STL" />
+          filename="../meshes/little_wheel_left2.STL" />
       </geometry>
       <material
         name="">
@@ -667,7 +667,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://diablo_mesh/meshes/little_wheel_left2.STL" />
+          filename="../meshes/little_wheel_left2.STL" />
       </geometry>
     </collision>
   </link>
@@ -706,7 +706,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://diablo_mesh/meshes/little_wheel_right1.STL" />
+          filename="../meshes/little_wheel_right1.STL" />
       </geometry>
       <material
         name="">
@@ -720,7 +720,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://diablo_mesh/meshes/little_wheel_right1.STL" />
+          filename="../meshes/little_wheel_right1.STL" />
       </geometry>
     </collision>
   </link>
@@ -759,7 +759,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://diablo_mesh/meshes/little_wheel_right2.STL" />
+          filename="../meshes/little_wheel_right2.STL" />
       </geometry>
       <material
         name="">
@@ -773,7 +773,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://diablo_mesh/meshes/little_wheel_right2.STL" />
+          filename="../meshes/little_wheel_right2.STL" />
       </geometry>
     </collision>
   </link>
