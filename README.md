@@ -67,13 +67,13 @@ docker pull heisonberg/diablo-sim-env:auto_start
 webots
 ```
 
-## 1.初始化配置（如果使用的是提供的镜像可以跳到第3步）
+## 1.初始化配置（如果使用的是提供的镜像可以跳到[第3步](#3打开仿真工程)）
 
 <img src="assets/webots-0.png" alt="webots-0" style="zoom: 50%;" />
 
 <img src="assets/webots-1.png" alt="webots-1" style="zoom: 85%;" />
 
-## 2.开始新手教程体验（熟悉webots的使用者可直接跳到第3步）
+## 2.开始新手教程体验（熟悉webots的使用者可直接跳到[第3步](#3打开仿真工程)）
 
 <img src="assets/webots-2.png" alt="webots-2" style="zoom:67%;" />
 
@@ -124,11 +124,12 @@ make debug
 - 请注意，以这种方式所做的任何更改 **都不会** 保留。   一旦容器被停止并删除，更改就会丢失。 建议仅使用 shell 进行调试并使用 `docker build`以进行持久更改。另外也可以使用 `docker commit `保存当前正在运行的容器。
 
 - 默认情况下，仿真代码位于 `diablo_A1/` ( `diablo_A1/`在此仓库中）。  构建镜像时， `diablo_A1/`下面的所有代码将被复制到新镜像 `/opt/diablo-sim-projects`中。  
+- 镜像的ENTRYPOINT为此存储库根目录中的[`start.sh`](start.sh)。生成映像时，此脚本将复制到 `/opt/start.sh` 并用作镜像的ENTRYPOINT。您可以任意更改此文件的内容以满足要求，如果不是重新构建镜像而是使用`docker commit`保存修改则不要更改脚本 `start.sh` 的名称。
 
 [Dockerfile](Dockerfile)包含在此存储库中。要构建更新的客户端映像，请执行
 
 ```shell
-# 使用名称“client-custom”和标签“latest”构建 
+# 使用名称“diablo-sim-env/webots”和标签“latest”构建 
 docker build . --file Dockerfile --tag diablo-sim-env/webots:latest
 ```
 
