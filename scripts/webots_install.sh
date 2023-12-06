@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Install Webots and 
+# Install Webots R2023a
 wget https://github.com/cyberbotics/webots/releases/download/R2023a/webots_2023a_amd64.deb
 sudo apt install ./webots_2023a_amd64.deb -y
 
@@ -17,7 +17,7 @@ wget https://storage.googleapis.com/google-code-archive-downloads/v2/code.google
 sudo mkdir -p gnuplot && sudo unzip -d gnuplot gnuplot-cpp.zip && cd gnuplot/gnuplot-cpp && sudo make &&\
 cd ../../ && sudo cp gnuplot/gnuplot-cpp/gnuplot_i.hpp simulation/
 
-echo 'finish'
+echo 'Finish locol environment setup.'
 
 
 
