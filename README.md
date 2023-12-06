@@ -16,7 +16,7 @@
 # Platform Support 支持平台
 
 * Ubuntu 20.04/22.04 (64-bit PC (AMD64) desktop)
-
+* Windows 10
 
 ## Dependencies 环境依赖
 
@@ -145,3 +145,88 @@ docker cp /home/<user>/test.tar diablo-sim:/opt
 ```shell
 ./scripts/webots_install.sh
 ```
+
+---
+## Windows环境配置
+### 1.安装gcc-arm-none-eabi
+- 下载地址：https://developer.arm.com/downloads/-/gnu-rm
+
+<img src="assets/gcc-arm-none-eabi.PNG" height="70%" width="70%" />
+
+- 安装后记得勾选Add path to envieonment variable
+
+<img src="assets/gcc-arm-none-eabi_install.PNG"   height="50%" width="50%"  />
+
+### 2.安装minGW
+- 下载地址：https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/8.1.0/
+
+<img src="assets/minGW.PNG" height="70%" width="70%" />
+
+- 下载后解压，打开mingw64\bin，将mingw32-make.exe改名为make.exe，并将bin文件添加到PATH环境变量中
+
+### 3.安装CMake
+- 下载地址：地址https://cmake.org/download/
+
+<img src="assets/Cmake.png" height="70%" width="70%" />
+
+- 这里也要记得勾选Add Cmake to thr system PATH for all users
+
+<img src="assets/CMake_install.PNG" height="50%" width="50%" />
+
+### 3.安装Webots
+- 下载地址：https://github.com/cyberbotics/webots/releases
+，版本选择R2023a
+- 添加环境变量
+将Webots\lib\controller添加进环境变量
+
+<img src="assets/webots_path2.png" height="50%" width="50%" />
+
+### 4.在VSCode中安装如下插件
+
+<img src="assets/vscode2.png" height="50%" width="50%" />
+
+#### 4.1 修改launch.json
+- 打开路径diablo-sim-env\diablo_A1\controllers，在当前路径下打开Vscode，点击launch.json
+
+<img src="assets/vscode3.png" height="40%" width="40%" />
+
+将launch.json内容替换为如下代码
+```
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "cppdbg",
+        "request": "launch",
+        "name": "Webots",
+        "program": "${workspaceFolder}/diablo_webots/diablo_webots.exe",
+        "stopAtEntry": false,
+        "cwd": "${workspaceFolder}",
+        "args": [ ],
+        "environment": [],
+        "externalConsole": false
+      }
+    ]
+  }
+```
+#### 4.2 修改Makefile
+- 点击diablo_webots\Makefile
+
+<img src="assets/vscode4.png" height="40%" width="40%" />
+
+将Makefile中WEBOTS_HOME_PATH路径修改为webots的安装路径
+
+<img src="assets/vscode5.png" height="40%" width="40%" />
+
+- 在下方git bash终端中输入
+```
+cd /d/study/liao/diablo-sim-env/diablo_A1/controllers/diablo_webots
+```
+然后```make```生成diablo_webots.exe
+
+### 5.运行
+- 打开webots点击File->Open World，在diablo-sim-env\diablo_A1\worlds路径下打开diablo_robot.wbt
+
+<img src="assets/simulation.png" height="70%" width="70%" />
+
+- 回到VSCode，运行仿真
