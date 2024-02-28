@@ -11,8 +11,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation 0.05057894246087081 0.0706361150471166 -0.9962190069611152 1.7670590835221744
-  position -1.9312137776681646 2.4911951016729392 0.3812570341209037
+  orientation 0.12236814048988738 0.06948638228154774 -0.9900493325438231 2.382514475179001
+  position -0.45488772519709464 1.7348715783451254 0.6407019476348613
 }
 TexturedBackground {
 }
@@ -721,6 +721,14 @@ Robot {
     }
   ]
   name "DiabloOriginal"
+  boundingObject Transform {
+    translation 0.02 0 0.04
+    children [
+      Box {
+        size 0.38 0.15 0.2
+      }
+    ]
+  }
   physics Physics {
     density -1
     mass 11.639
