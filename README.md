@@ -10,7 +10,7 @@
 </p>
 
 
-## Thw basic webots simulation environment for DIABLO. Noted that the environment has no controller, but you can design your own controller to control the robot. 
+### The basic webots simulation environment for DIABLO. Noted that the environment has no controller, but you can design your own controller to control the robot. 
 
 ---
 ## Platform Support 
