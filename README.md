@@ -165,7 +165,7 @@ docker cp /home/<user>/test.tar diablo-sim:/opt
 
 - 下载后解压，打开mingw64\bin，将mingw32-make.exe改名为make.exe，并将bin文件添加到PATH环境变量中
 
-### 3.安装CMake
+### 3.安装CMake  (不必要)
 - 下载地址：地址https://cmake.org/download/
 
 <img src="assets/Cmake.png" height="70%" width="70%" />
