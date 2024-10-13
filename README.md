@@ -22,7 +22,7 @@
 
 - [Docker](https://docs.docker.com/engine/install/ubuntu/)
 
-## 如何不使用Docker，直接在Ubuntu实机环境中安装Webots环境（不推荐）
+## 如何不使用Docker，直接在Ubuntu实机环境中安装Webots环境
 [执行以下脚本将自动在实机中安装Webots,gdbgui和编译clone下来的diablo-A1工程](scripts/webots_install.sh)
 ```shell
 ./scripts/webots_install.sh
@@ -30,7 +30,7 @@
 
 ---
 
-## Quick Start 快速开始
+## Quick Start 快速开始 (使用docker)
 
 1. [执行以下脚本安装docker及nvidia-docker2](scripts/docker_install.sh)(需要提前安装好安装NVIDIA显卡驱动)
 
