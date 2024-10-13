@@ -6,19 +6,19 @@
 
 
 <p align="center">
-    语言：<a href="README.en.md"><strong>English</strong></a> / <strong>中文</strong>
+    语言：<a href="README.en.md"><strong>English</strong></a> / 
 </p>
 
 
-	基于Webots的机器人仿真环境。您可以通过仿真环境进行运动控制算法的仿真。
+## Thw basic webots simulation environment for DIABLO. Noted that the environment has no controller, but you can design your own controller to control the robot. 
 
 ---
-## Platform Support 支持平台
+## Platform Support 
 
 * Ubuntu 20.04/22.04 (64-bit PC (AMD64) desktop)
 * Windows 10
 
-## Dependencies 环境依赖
+## Dependencies 
 
 - [Docker](https://docs.docker.com/engine/install/ubuntu/) (if you use docker to install, this is necessary)
 
