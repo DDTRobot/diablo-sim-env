@@ -30,7 +30,7 @@
 
 ---
 
-## Quick Start 快速开始 (使用docker)
+## Use Docker
 
 1. [执行以下脚本安装docker及nvidia-docker2](scripts/docker_install.sh)(需要提前安装好安装NVIDIA显卡驱动)
 
