@@ -5,9 +5,6 @@
 </p>
 
 
-<p align="center">
-    语言：<a href="README.en.md"><strong>English</strong></a> / 
-</p>
 
 
 #### The basic webots simulation environment for DIABLO. 
