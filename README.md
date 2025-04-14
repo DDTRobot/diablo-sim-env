@@ -41,7 +41,7 @@ Run the following in the bash :
 ```
 2. Imort the docker image (recommended by rmecboy)
  ```bash
-docker pull heisonberg/diablo-sim-env:auto_start
+docker pull registry.cn-guangzhou.aliyuncs.com/ddt_robot/diablo_sim:v1
  ```
 
 3. Use docker container（run the script in your local host）
